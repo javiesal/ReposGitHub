@@ -9,50 +9,86 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
   $(document).ready(function(){
+   	$("#hiding").hide();
     $("button").click(function(){
-    	$.get("https://api.github.com/users/"+$("usr").val()+"/repos",function(data,status){
-    		alert("Data: "+ JSON.stringify(data) + "\nStatus: " +status +"\n(Esto significa que si que va)");
-            $("#userdata").html(data);
-    	});
-        
-    });
+    //var text = "<div class=container><table class=table table-hover text-center id=hiding><thead><tr><th class="text-center">NAME</th><th class=text-center>DESCRIPTION</th><th class=text-center>STARGAZERS</th></tr></thead><tbody id = table>";
+    $.get("https://api.github.com/users/"+$("#usr").val()+"/repos",function(data,status){
+    		//alert("Data: "+ JSON.stringify(data) + "\nStatus: " +status +"\n(Esto significa que si que va)");
+            //$("#userdata").text(data[i].name);
+            $("#hiding").show();
+
+            for(var i = 0;i<data.length;i++){
+    			//Si es columnas (faltaria Hide/show)
+        		//$("#name").append("<p>"+data[i].name+"</p>");
+        		//$("#descrip").append("<p>"+data[i].description+"</p>");
+    			//$("#stargazer").append("<p>"+data[i].stargazers_count+"</p>");
+    			//Si es columnas
+    			//text = text + "<tr><td>"+data[i].name+"</td><td>"+data[i].description+"</td><td>"+data[i].stargazers_count+"</td></tr>";
+   
+    			$("#table").append("<tr><td>"+data[i].name+"</td><td>"+data[i].description+"</td><td>"+data[i].stargazers_count+"</td></tr>");
+    }
+        //$("text").append("</tbody></table></div>");
+
+    //text = text + "</tbody></table></div>";
+    var NewTab = window.open("","NewTab");
+    NewTab.document.write("SAMPLE TEXT");
+	});
     
+    
+    
+    });
   });
   </script>
 </head>
 <body>
 
 <div class="jumbotron text-center">
-  <h1>LA BUSQUEDA DE REPOSITORIOS DE GITHUB</h1>
+  <h1>LA GRAN BÚSQUEDA DE REPOSITORIOS DE GITHUB</h1>
   <p></p> 
 </div>
 
-<div class="form-group">
-  <label for="usr">Usuario que buscamos:</label>
-  <input type="text" id="usr">
-</div>
+<p class="text-center"><b>Usuario que buscamos:    </b><input type="text" id="usr"></p>
+  
 
-<button type="button" class="btn">ESPAÑA TE AYUDA A BUSCAR DATOS DAME QUE SOY UN BOTON</button>
-<p id = userdata>(Aqui van los resultados en teoria)</p>
+<button type="button"class="btn btn-primary btn-block">BUSCAR REPOSITORIOS DEL USUARIO</button>
 
-<div class="container">
+<!-- 
+//Columnas
+<div class="container" id=container>
   <div class="row">
     <div class="col-sm-4">
-      <h3></h3>
-      <p></p>
-      <p></p>
+      <h3>NAME</h3>
+	  <p id=name></p>
+
     </div>
     <div class="col-sm-4">
-      <h3></h3>
-      <p></p>
-      <p></p>
+      <h3>DESCRIPTION</h3>
+      <p id=descrip></p>
+
     </div>
     <div class="col-sm-4">
-      <h3></h3>        
-      <p></p>
-      <p></p>
+      <h3>STARGAZERS</h3>
+      <p id=stargazer></p>
+
     </div>
   </div>
+</div>
+-->
+
+
+<div class="container">
+  <table class="table table-hover text-center" id=hiding>
+    <thead>
+      <tr>
+        <th class="text-center">NAME</th>
+        <th class="text-center">DESCRIPTION</th>
+        <th class="text-center">STARGAZERS</th>
+      </tr>
+    </thead>
+    <tbody id = table>
+      
+    </tbody>
+  </table>
 </div>
 
 </body>
