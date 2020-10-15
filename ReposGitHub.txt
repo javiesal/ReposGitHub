@@ -11,7 +11,7 @@
   $(document).ready(function(){
     $("button").click(function(){
     	$.get("https://api.github.com/users/"+$("usr").val()+"/repos",function(data,status){
-    		alert("Data: "+ data + "\nStatus: " +status +"\n(Esto significa que si que va)");
+    		alert("Data: "+ JSON.stringify(data) + "\nStatus: " +status +"\n(Esto significa que si que va)");
             $("#userdata").html(data);
     	});
         
