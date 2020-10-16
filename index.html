@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    	$("button").click(function(){
+		//alert("The list of repositories are shown in a new tab");
+    		var NewTab = window.open("table.html?user="+$("#usr").val());
+    	});
+  });
+  </script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>THE GREAT HUNTING OF GITHUB REPOSITORIES</h1>
+</div>
+
+<p class="text-center"><b>User we are looking for:    </b><input type="text" id="usr"></p>
+  
+
+<button type="button"class="btn btn-primary btn-block">SEARCH FOR USER'S REPOSITORIES</button>
+
+
+</body>
+</html>

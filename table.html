@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+	var urlParams = new URLSearchParams(window.location.search);
+    $.get("https://api.github.com/users/"+urlParams.get('user')+"/repos",function(data,status){
+    		
+
+            for(var i = 0;i<data.length;i++){
+    		$("#table").append("<tr><td>"+data[i].name+"</td><td>"+data[i].description+"</td><td>"+data[i].stargazers_count+"</td></tr>");
+    	    }
+	$("#title").html("Repositories of user "+ "<b>"+urlParams.get('user')+"</b>");
+    });
+  });
+  </script>
+</head>
+
+
+
+
+
+<h1 class="text-center" id="title"></h1>
+<h6 class ="text-center">Is not necessary to close the tab to search another user's repositories.</h6>
+<h6 class ="text-center"> Just change the tab and look for someone else if you want.</h6>
+
+<p class="text-center">In the table down are shown the repository name, the description of it and the number of stargazers the repository has</p>
+<h6 class="text-center">NOTE: If it has many repositories, in some cases can take a while to load the list</h6>
+<div class="container">
+  <table class="table table-hover text-center">
+    <thead>
+      <tr>
+        <th class="text-center">NAME</th>
+        <th class="text-center">DESCRIPTION</th>
+        <th class="text-center">STARGAZERS</th>
+      </tr>
+    </thead>
+    <tbody id = table>
+      
+    </tbody>
+  </table>
+</div>
